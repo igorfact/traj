@@ -1,0 +1,33 @@
+#Makefile
+
+CPP = g++
+OFLAG = -o
+CPPFLAGS = -Wall -g	
+.SUFFIXES : .o .h .cpp .c
+.cpp.o :
+	$(CPP) $(CPPFLAGS) -c $<
+.c.o :
+	$(CPP) $(CPPFLAGS) -c $<
+
+all: \
+  cycles 
+Test.o:
+TestIntPair:
+TestTrajectory:
+
+cycles: cycles.o
+	$(CPP) $(OFLAG) cycles cycles.o 
+
+TestIntPair: TestIntPair.o Test.o
+	$(CPP) $(OFLAG) TestIntPair TestIntPair.o Test.o 
+	
+TestTrajectory: TestTrajectory.o
+	$(CPP) $(OFLAG) TestTrajectory TestTrajectory.o  
+
+cycles.o: IntPair.h Trajectory.h Ratio.h Histogram.h cycles.cpp
+Test.o: ../TestSuite/Test.h ../TestSuite/Test.cpp
+	$(CPP) $(CPPFLAGS) -c ../TestSuite/Test.h ../TestSuite/Test.cpp
+TestIntPair.o: IntPair.h ../TestSuite/Test.h TestIntPair.cpp
+	$(CPP) $(CPPFLAGS) -c IntPair.h ../TestSuite/Test.h TestIntPair.cpp
+TestTrajectory.o: IntPair.h Trajectory.h TestTrajectory.cpp
+	$(CPP) $(CPPFLAGS) -c TestTrajectory.cpp
