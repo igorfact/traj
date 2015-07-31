@@ -1,6 +1,5 @@
 //TestIntPair.cpp
 #include "IntPair.h"
-#include "Direction.h"
 #include "../TestSuite/Test.h"
 #include <cmath>
 
@@ -30,11 +29,11 @@ public:
 	  test_((ip4 + ip5) == (ip5 + ip4));
 	  
 	  Direction left = Direction(Direction::LEFT);
-	  test_(left.getDirPair() == IntPair(-1,0));
-	  test_(left.getDirPair() < IntPair(0,0));
+	  test_(*(left.getDirPair()) == IntPair(-1,0));
+	  test_(*(left.getDirPair()) < IntPair(0,0));
 	
 		Direction right = Direction();
-	  test_(right.getDirPair() == IntPair(1,0));
+	  test_(*(right.getDirPair()) == IntPair(1,0));
   
 	  //Direction::initialize();
 	  int n = Direction::getRandom().getNo();
